@@ -37,6 +37,47 @@
   overflow-y: auto;
   z-index: 100;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s ease;
+}
+
+/* Mobile Hamburger & Sidebar Controls */
+.admin-hamburger-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.admin-hamburger-btn:hover {
+  background: #f1f5f9;
+}
+
+.sidebar-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, background 0.2s;
+}
+
+.sidebar-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-overlay {
+  display: none;
 }
 
 .sidebar-header {
@@ -561,4 +602,223 @@
   font-size: 10px;
   color: #64748b;
   margin-top: 6px;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT & MEDIA QUERIES
+   ========================================= */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@keyframes adminFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Tablet & Mobile Screens (<= 992px) */
+@media (max-width: 992px) {
+  .admin-hamburger-btn {
+    display: inline-flex;
+  }
+
+  .sidebar-close-btn {
+    display: inline-flex;
+  }
+
+  .admin-sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(2px);
+    z-index: 998;
+    animation: adminFadeIn 0.2s ease;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: -285px;
+    width: 275px;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 999;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.35);
+  }
+
+  .admin-sidebar.open {
+    left: 0;
+  }
+
+  .admin-topbar {
+    padding: 10px 16px;
+  }
+
+  .admin-content-container {
+    padding: 16px;
+  }
+
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  .topbar-title {
+    font-size: 16px;
+  }
+
+  .admin-card-header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .admin-card-body {
+    padding: 16px;
+  }
+
+  .admin-table {
+    min-width: 580px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 10px 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .stat-card-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .stat-card-info .stat-value {
+    font-size: 20px;
+  }
+}
+
+/* Small Phones (<= 540px) */
+@media (max-width: 540px) {
+  .admin-content-container {
+    padding: 10px;
+  }
+
+  .topbar-left {
+    gap: 10px;
+  }
+
+  .topbar-title {
+    font-size: 15px;
+  }
+
+  .topbar-btn-text,
+  .admin-badge-text {
+    display: none;
+  }
+
+  .admin-badge {
+    padding: 4px 6px;
+  }
+
+  .stat-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px;
+  }
+
+  .stat-card-info .stat-value {
+    font-size: 18px;
+  }
+
+  .admin-card {
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+
+  .admin-card-header {
+    padding: 10px 14px;
+  }
+
+  .admin-card-body {
+    padding: 12px;
+  }
+
+  /* Modals on mobile */
+  .modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-card {
+    max-width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .modal-header {
+    padding: 14px 16px;
+  }
+
+  .modal-body {
+    padding: 14px 16px;
+  }
+
+  .modal-footer {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .modal-footer button {
+    flex: 1 1 120px;
+    justify-content: center;
+  }
+
+  /* Form inputs stack vertically on mobile */
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* Prevents iOS Safari 100% zoom-in on focus */
+  .form-control {
+    font-size: 16px;
+  }
+
+  /* Quick action / banner header buttons */
+  .admin-toolbar > div {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-toolbar input,
+  .admin-toolbar select,
+  .admin-toolbar .admin-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

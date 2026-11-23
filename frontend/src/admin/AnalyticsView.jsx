@@ -44,14 +44,14 @@ export default function AnalyticsView() {
     <div>
       {/* Header with Period Filter */}
       <div className="admin-card">
-        <div className="admin-card-body" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+        <div className="admin-card-body admin-toolbar">
           <div>
             <h2 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 4px' }}>Visitor Analytics & Conversion Tracking</h2>
             <p style={{ margin: 0, color: '#64748b', fontSize: '13px' }}>
               Real-time monitoring of user visits, app impressions, and outbound affiliate clicks.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
             <select
               className="form-control"
               style={{ width: 'auto' }}
@@ -145,52 +145,54 @@ export default function AnalyticsView() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {/* Apps Click Conversion Table */}
         <div className="admin-card">
           <div className="admin-card-header">
             <h3 className="admin-card-title">App Click Tracking & CTR</h3>
           </div>
           <div className="admin-card-body" style={{ padding: 0 }}>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>App</th>
-                  <th>Impressions</th>
-                  <th>Clicks</th>
-                  <th>CTR %</th>
-                </tr>
-              </thead>
-              <tbody>
-                {apps.map((app) => (
-                  <tr key={app.app_id}>
-                    <td>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <img
-                          src={app.icon_url || '/assets/logo.png'}
-                          alt=""
-                          style={{ width: '32px', height: '32px', borderRadius: '6px', objectFit: 'cover' }}
-                        />
-                        <strong style={{ fontSize: '13px' }}>{app.name}</strong>
-                      </div>
-                    </td>
-                    <td>{app.impressions || 0}</td>
-                    <td><strong style={{ color: '#e60009' }}>{app.clicks || 0}</strong></td>
-                    <td>
-                      <span style={{
-                        padding: '3px 8px',
-                        borderRadius: '4px',
-                        fontWeight: 700,
-                        background: app.ctr > 20 ? '#dcfce7' : '#f1f5f9',
-                        color: app.ctr > 20 ? '#166534' : '#475569'
-                      }}>
-                        {app.ctr || 0}%
-                      </span>
-                    </td>
+            <div className="table-responsive">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>App</th>
+                    <th>Impressions</th>
+                    <th>Clicks</th>
+                    <th>CTR %</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {apps.map((app) => (
+                    <tr key={app.app_id}>
+                      <td>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <img
+                            src={app.icon_url || '/assets/logo.png'}
+                            alt=""
+                            style={{ width: '32px', height: '32px', borderRadius: '6px', objectFit: 'cover' }}
+                          />
+                          <strong style={{ fontSize: '13px' }}>{app.name}</strong>
+                        </div>
+                      </td>
+                      <td>{app.impressions || 0}</td>
+                      <td><strong style={{ color: '#e60009' }}>{app.clicks || 0}</strong></td>
+                      <td>
+                        <span style={{
+                          padding: '3px 8px',
+                          borderRadius: '4px',
+                          fontWeight: 700,
+                          background: app.ctr > 20 ? '#dcfce7' : '#f1f5f9',
+                          color: app.ctr > 20 ? '#166534' : '#475569'
+                        }}>
+                          {app.ctr || 0}%
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 

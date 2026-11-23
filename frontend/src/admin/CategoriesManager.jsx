@@ -31,7 +31,7 @@ export default function CategoriesManager({ categories, onCreateCategory, onUpda
   return (
     <div>
       <div className="admin-card">
-        <div className="admin-card-body" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="admin-card-body admin-toolbar">
           <div>
             <h2 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 4px' }}>Category Navigation Tabs</h2>
             <p style={{ margin: 0, color: '#64748b', fontSize: '13px' }}>
@@ -46,7 +46,8 @@ export default function CategoriesManager({ categories, onCreateCategory, onUpda
 
       <div className="admin-card">
         <div className="admin-card-body" style={{ padding: 0 }}>
-          <table className="admin-table">
+          <div className="table-responsive">
+            <table className="admin-table">
             <thead>
               <tr>
                 <th>Category Tab Title</th>
@@ -88,6 +89,7 @@ export default function CategoriesManager({ categories, onCreateCategory, onUpda
           </table>
         </div>
       </div>
+    </div>
 
       {isModalOpen && (
         <div className="modal-backdrop">

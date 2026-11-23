@@ -52,7 +52,7 @@ export default function PagesManager({ pages, onCreatePage, onUpdatePage, onDele
   return (
     <div>
       <div className="admin-card">
-        <div className="admin-card-body" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="admin-card-body admin-toolbar">
           <div>
             <h2 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 4px' }}>Pages & Blog Management</h2>
             <p style={{ margin: 0, color: '#64748b', fontSize: '13px' }}>
@@ -67,7 +67,8 @@ export default function PagesManager({ pages, onCreatePage, onUpdatePage, onDele
 
       <div className="admin-card">
         <div className="admin-card-body" style={{ padding: 0 }}>
-          <table className="admin-table">
+          <div className="table-responsive">
+            <table className="admin-table">
             <thead>
               <tr>
                 <th>Title</th>
@@ -122,6 +123,7 @@ export default function PagesManager({ pages, onCreatePage, onUpdatePage, onDele
           </table>
         </div>
       </div>
+    </div>
 
       {isModalOpen && (
         <div className="modal-backdrop">

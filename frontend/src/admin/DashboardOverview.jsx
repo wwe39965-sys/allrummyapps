@@ -86,7 +86,7 @@ export default function DashboardOverview({ analyticsData, onNavigate, onOpenAdd
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {/* Top 5 Apps by Clicks */}
         <div className="admin-card">
           <div className="admin-card-header">
@@ -100,40 +100,42 @@ export default function DashboardOverview({ analyticsData, onNavigate, onOpenAdd
           </div>
           <div className="admin-card-body" style={{ padding: 0 }}>
             {apps.length > 0 ? (
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th>App</th>
-                    <th>Bonus</th>
-                    <th>Clicks</th>
-                    <th>CTR</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {apps.slice(0, 5).map((app) => (
-                    <tr key={app.app_id}>
-                      <td style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <img 
-                          src={app.icon_url || '/assets/logo.png'} 
-                          alt="" 
-                          style={{ width: '32px', height: '32px', borderRadius: '6px', objectFit: 'cover' }} 
-                        />
-                        <strong style={{ fontSize: '13px' }}>{app.name}</strong>
-                      </td>
-                      <td style={{ color: '#e60009', fontWeight: 700 }}>{app.bonus_amount || '—'}</td>
-                      <td><strong>{app.clicks || 0}</strong></td>
-                      <td>
-                        <span style={{ 
-                          fontWeight: 700, 
-                          color: app.ctr > 20 ? '#166534' : '#475569' 
-                        }}>
-                          {app.ctr || 0}%
-                        </span>
-                      </td>
+              <div className="table-responsive">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>App</th>
+                      <th>Bonus</th>
+                      <th>Clicks</th>
+                      <th>CTR</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {apps.slice(0, 5).map((app) => (
+                      <tr key={app.app_id}>
+                        <td style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <img 
+                            src={app.icon_url || '/assets/logo.png'} 
+                            alt="" 
+                            style={{ width: '32px', height: '32px', borderRadius: '6px', objectFit: 'cover' }} 
+                          />
+                          <strong style={{ fontSize: '13px' }}>{app.name}</strong>
+                        </td>
+                        <td style={{ color: '#e60009', fontWeight: 700 }}>{app.bonus_amount || '—'}</td>
+                        <td><strong>{app.clicks || 0}</strong></td>
+                        <td>
+                          <span style={{ 
+                            fontWeight: 700, 
+                            color: app.ctr > 20 ? '#166534' : '#475569' 
+                          }}>
+                            {app.ctr || 0}%
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : (
               <p style={{ padding: '20px', color: '#64748b', textAlign: 'center' }}>No app activity recorded yet.</p>
             )}

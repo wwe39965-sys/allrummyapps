@@ -91,9 +91,9 @@ export default function AppsManager({ apps, categories, onCreateApp, onUpdateApp
     <div>
       {/* Top Filter and Action Bar */}
       <div className="admin-card">
-        <div className="admin-card-body" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+        <div className="admin-card-body admin-toolbar">
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ position: 'relative', minWidth: '220px' }}>
+            <div style={{ position: 'relative', minWidth: '200px' }}>
               <input
                 type="text"
                 placeholder="Search apps..."
@@ -127,7 +127,7 @@ export default function AppsManager({ apps, categories, onCreateApp, onUpdateApp
           <h3 className="admin-card-title">All Rummy & Teen Patti Apps ({filteredApps.length})</h3>
         </div>
         <div className="admin-card-body" style={{ padding: 0 }}>
-          <div style={{ overflowX: 'auto' }}>
+          <div className="table-responsive">
             <table className="admin-table">
               <thead>
                 <tr>
